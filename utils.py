@@ -1,5 +1,11 @@
 import wikipedia
 import pickle
+import matplotlib.pyplot as plt
+import seaborn as sns
+import networkx as nx
+import numpy as np
+
+from sklearn import linear_model
 
 
 def explore_page(page_title, network, to_explore, inner=False, all_nodes=None):
@@ -75,3 +81,127 @@ def get_bag_of_communities(network, partition):
                 bags_of_categories[label][c] = 1
 
     return bags_of_categories
+
+
+def plot_degree_distribution(graph, figsize=(15, 6), title='Degree distribution'):
+    """
+    Plot the degree distribution of a given NetworkX graph.
+    """
+    fig, ax = plt.subplots(figsize=figsize)
+
+    d = list(dict(graph.degree()).values())
+    sns.distplot(list(d), bins=16, ax=ax)
+    ax.set_ylabel('Number of vertices')
+    ax.set_xlabel('Degree')
+    ax.set_title(title)
+    plt.show()
+
+
+def get_distribution(a):
+    """
+    Returns the degree distribution of a given NetworkX graph. The returned
+    value is an array whose k'th entry is the probability of a node to have
+    the degree k.
+    """
+    if type(a) == nx.classes.graph.Graph:
+        probabilities = np.zeros(len(a) + 1)
+        for k in nx.adjacency_matrix(a).sum(axis=1):
+            probabilities[k] += 1
+        probabilities = probabilities / np.sum(probabilities)
+        return probabilities
+
+
+def print_distribution(graph, a=None, b=None, c=None, d=None):
+    """
+    Plots a graph's degree distribution in natural, semi-log and log-log scales.
+    """
+    probability_distribution = get_distribution(graph)
+
+    if a is None:
+        a = len(probability_distribution)
+    if b is None:
+        b = len(probability_distribution)
+    if c is None:
+        c = len(probability_distribution)
+    if d is None:
+        d = len(probability_distribution)
+
+    fig, ax = plt.subplots(nrows=2, ncols=2, figsize=(15, 9))
+
+    ax[0, 0].set_title('Degree distribution')
+    ax[0, 0].plot(probability_distribution[:a])
+
+    ax[0, 1].set_title('Semi log x degree distribution')
+    ax[0, 1].semilogx(probability_distribution[:b])
+
+    ax[1, 0].set_title('Semi log y degree distribution')
+    ax[1, 0].semilogy(probability_distribution[:c], 's')
+
+    ax[1, 1].set_title('Log-log degree distribution')
+    ax[1, 1].loglog(probability_distribution[:d], 's')
+
+    plt.show()
+
+
+def print_denoised_degree_distribution(graph, a=None, b=None, c=None, d=None):
+    probability_distribution = get_distribution(graph)
+
+    if a is None:
+        a = len(probability_distribution)
+    if b is None:
+        b = len(probability_distribution)
+    if c is None:
+        c = len(probability_distribution)
+    if d is None:
+        d = len(probability_distribution)
+
+    fig, ax = plt.subplots(nrows=2, ncols=2, figsize=(15, 9))
+
+    ax[0, 0].set_title('Degree distribution')
+    ax[0, 0].plot(probability_distribution[:a])
+
+    ax[0, 1].set_title('De-noised degree distribution')
+    ax[0, 1].plot(probability_distribution[:b])
+
+    ax[1, 0].set_title('Log-log degree distribution')
+    ax[1, 0].loglog(probability_distribution[:c], 's')
+
+    ax[1, 1].set_title('Log-log de-noised degree distribution')
+    ax[1, 1].loglog(probability_distribution[:d], 's')
+
+    plt.show()
+
+
+def linear_regression_coefficient(graph, title, limit=None):
+    probability_distribution = get_distribution(graph)
+
+    x = np.where(probability_distribution != 0)[0]
+    y = probability_distribution[x]
+
+    logx = np.log(x)
+    logy = np.log(y)
+
+    if limit is None:
+        limit = len(logx)\
+
+    logx = logx[:limit]
+    logy = logy[:limit]
+
+    logx = logx.reshape(-1, 1)
+    logy = logy.reshape(-1, 1)
+
+    regression = linear_model.LinearRegression()
+    regression.fit(logx, logy)
+
+    print('The best linear approximation is y = {0}x + {1}.'.format(regression.coef_, regression.intercept_))
+
+    print('R2 value for the regression : {}'.format(regression.score(logx, logy)))
+
+    fig, ax = plt.subplots(ncols=2, figsize=(15, 5))
+
+    ax[0].scatter(logx, logy, color='C0', label='Distribution')
+    ax[0].plot(logx, regression.coef_*logx + regression.intercept_, color='C1', label='Linear approximation')
+    ax[0].set_title(title)
+    ax[0].legend(loc='upper right')
+
+    sns.regplot(logx, logy[:, 0], ax=ax[1])

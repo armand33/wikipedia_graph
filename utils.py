@@ -51,3 +51,27 @@ def save_obj(obj, name):
 def load_obj(name):
     with open('data/' + name + '.pkl', 'rb') as f:
         return pickle.load(f)
+
+
+def get_bag_of_communities(network, partition):
+    """
+    :param network: dictionary containing for each key (each node/page) a dictionary containing the page categories.
+    :param partition: list of the community assignment
+    :return: list of dictionaries, one dictionary per community. Each dictionary contains the categories of all the
+    nodes of a given community as keys and the number of pages in the community that have this category as values.
+    """
+    k = len(set(partition))  # number of communities
+    bags_of_categories = [{} for _ in range(k)]
+    for i, title in enumerate(network.keys()):
+        cats = network[title]['categories']
+        if type(partition) == list:
+            label = partition[i]
+        else:
+            label = partition[title]
+        for c in cats:
+            if c in bags_of_categories[label].keys():
+                bags_of_categories[label][c] += 1
+            else:
+                bags_of_categories[label][c] = 1
+
+    return bags_of_categories

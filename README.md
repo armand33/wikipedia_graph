@@ -17,6 +17,19 @@ data.
     * network.pkl : pickle file of the scraped network dictionary (see the notebook for details)
     * shortest_paths.pkl = pickle file of the shortest paths dictionary (see the notebook for details)
     
+### Requirements:
+This project was developed using Python 3.
+
+The required libraries are: 
+* Numpy
+* NetworkX
+* Scikit Learn
+* community
+* python-louvain
+* seaborn
+* tqdm
+ 
+
 ### Project details
 [Link](https://docs.google.com/document/d/1XEc3ogZWYKrAFKGfEoxY8xdoTWGB_P_4vfVQA0mi6tk/edit?usp=sharing) to the original 
 project proposal.

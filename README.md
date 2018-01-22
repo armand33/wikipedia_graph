@@ -7,7 +7,7 @@ Team members:
 * Quentin Rebjock
 
 ### Important note:
-Please take the time to download two pickle files `shortest_paths.pkl` from this [link](https://drive.google.com/file/d/17bXr-OKY8xrUhCDfwR0WwP9uTOXeKG9d/view?usp=sharing). It should be put in the directory `data/`.
+Please take the time to download the pickle file `shortest_paths.pkl` from this [link](https://drive.google.com/file/d/17bXr-OKY8xrUhCDfwR0WwP9uTOXeKG9d/view?usp=sharing). It should be put in the directory `data/`.
 
 ### Content of the folder:
 * ntds_project.ipynd : this is the main notebook containing all the data pipeline and the exploitation of the data

@@ -15,8 +15,10 @@ Please take the time to download the pickle file `shortest_paths.pkl` from this 
 data.
 * data : folder containing some pickle files
     * network.pkl : pickle file of the scraped network dictionary (see the notebook for details)
-    * shortest_paths.pkl = pickle file of the shortest paths dictionary (see the notebook for details)
-    
+    * shortest_paths.pkl : pickle file of the shortest paths dictionary (see the notebook for details)
+    * cross_val.pkl : pickle file on the cross-validation of the k parameter (see the notebook for more details)
+    * viz.gephi : gephi file for the visualization of the communities
+* images : screenshots of some visualization of the communities done using Gephi.
 ### Requirements:
 This project was developed using Python 3.
 

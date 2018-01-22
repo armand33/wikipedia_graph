@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import networkx as nx
 import numpy as np
+import plotly.graph_objs as go
 
 from sklearn import linear_model
 
@@ -205,3 +206,69 @@ def linear_regression_coefficient(graph, title, limit=None):
     ax[0].legend(loc='upper right')
 
     sns.regplot(logx, logy[:, 0], ax=ax[1])
+
+
+def build_communities(partition_type, positions, G, community2color):
+    edge_trace = go.Scattergl(
+        x=[],
+        y=[],
+        line=dict(width=0.5, color='#888'),
+        showlegend=False,
+        hoverinfo='none',
+        mode='lines')
+
+    for edge in G.edges():
+        x0, y0 = G.node[edge[0]][positions]
+        x1, y1 = G.node[edge[1]][positions]
+        edge_trace['x'] += [x0, x1]
+        edge_trace['y'] += [y0, y1]
+
+    node_trace = go.Scattergl(
+        x=[],
+        y=[],
+        text=[],
+        mode='markers',
+        marker=dict(
+            color=[],
+            size=10,
+            opacity=0.5)
+    )
+
+    for node in G.nodes():
+        x, y = G.node[node][positions]
+        node_trace['x'].append(x)
+        node_trace['y'].append(y)
+
+    for node in G.nodes:
+        node_trace['marker']['color'].append(community2color[int(G.nodes[node][partition_type])])
+        node_trace['text'].append(node)
+
+    data = [edge_trace, node_trace]
+    return data
+
+
+def set_layout(title):
+    layout = go.Layout(
+        showlegend=False,
+        hovermode='closest',
+        margin=dict(b=20, l=5, r=5, t=40),
+        title='<br>Communities by {}'.format(title),
+        xaxis=dict(
+            autorange=True,
+            showgrid=False,
+            zeroline=False,
+            showline=False,
+            autotick=True,
+            ticks='',
+            showticklabels=False
+        ),
+        yaxis=dict(
+            autorange=True,
+            showgrid=False,
+            zeroline=False,
+            showline=False,
+            autotick=True,
+            ticks='',
+            showticklabels=False
+        ))
+    return layout

@@ -9,6 +9,8 @@ Team members:
 ### Important note:
 Please take the time to download the pickle file `shortest_paths.pkl` from this [link](https://drive.google.com/file/d/17bXr-OKY8xrUhCDfwR0WwP9uTOXeKG9d/view?usp=sharing). It should be put in the directory `data/`.
 
+In order to read the notebook properly (especially the graph visualization in the end), you might want to used this [link](https://nbviewer.jupyter.org/github/armand33/wikipedia_graph/blob/master/ntds_project.ipynb) to NBViewer.
+
 ### Content of the folder:
 * ntds_project.ipynd : this is the main notebook containing all the data pipeline and the exploitation of the data
 * utils.py : this file contains useful homemade Python functions that were used during the scraping and the exploitation of the
@@ -30,6 +32,7 @@ The required libraries are:
 * python-louvain
 * seaborn
 * tqdm
+* plotly
  
 
 ### Project details

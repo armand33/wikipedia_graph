@@ -1,4 +1,4 @@
-# Community detection on the Wikipedia Hyperlink Graph
+# Community detection on the Wikipedia hyperlink graph
 ## NTDS project
 
 Team members: 

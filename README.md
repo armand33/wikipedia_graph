@@ -11,8 +11,10 @@ Please take the time to download the pickle file `shortest_paths.pkl` from this 
 
 In order to read the notebook properly (especially the graph visualization in the end), you might want to used this [link](https://nbviewer.jupyter.org/github/armand33/wikipedia_graph/blob/master/ntds_project.ipynb?flush_cache=true) to NBViewer.
 
+Here is a [link](https://docs.google.com/presentation/d/1TvyzBLKNtd8JSAftHxNQBTEFV3sqJS-Wb9kcnSRySK8/edit#slide=id.p) to the presentation slides.
+
 ### Content of the folder:
-* ntds_project.ipynd : this is the main notebook containing all the data pipeline and the exploitation of the data
+* graph_exploration.ipynd : this is the main notebook containing all the data pipeline and the exploitation of the data
 * utils.py : this file contains useful homemade Python functions that were used during the scraping and the exploitation of the
 data.
 * data : folder containing some pickle files
@@ -22,7 +24,7 @@ data.
     * viz.gephi : gephi file for the visualization of the communities
 * images : screenshots of some visualization of the communities done using Gephi.
 ### Requirements:
-This project was developed using Python 3.
+This project was developed using Python 3.5.
 
 The required libraries are: 
 * Numpy

@@ -14,7 +14,7 @@ In order to read the notebook properly (especially the graph visualization in th
 Here is a [link](https://docs.google.com/presentation/d/1TvyzBLKNtd8JSAftHxNQBTEFV3sqJS-Wb9kcnSRySK8/edit#slide=id.p) to the presentation slides.
 
 ### Content of the folder:
-* graph_exploration.ipynd : this is the main notebook containing all the data pipeline and the exploitation of the data
+* wikipedia.ipynd : this is the main notebook containing all the data pipeline and the exploitation of the data
 * utils.py : this file contains useful homemade Python functions that were used during the scraping and the exploitation of the
 data.
 * data : folder containing some pickle files

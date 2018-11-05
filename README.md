@@ -1,7 +1,6 @@
 # Community detection on the Wikipedia hyperlink graph
-## NTDS project
 
-Team members: 
+Authors :
 * Armand Boschin
 * Bojana Ranković
 * Quentin Rebjock

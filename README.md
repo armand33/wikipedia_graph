@@ -6,11 +6,7 @@ Authors :
 * Quentin Rebjock
 
 ### Important note:
-Please take the time to download the pickle file `shortest_paths.pkl` from this [link](https://drive.google.com/file/d/17bXr-OKY8xrUhCDfwR0WwP9uTOXeKG9d/view?usp=sharing). It should be put in the directory `data/`.
-
 In order to read the notebook properly (especially the graph visualization in the end), you might want to used this [link](https://nbviewer.jupyter.org/github/armand33/wikipedia_graph/blob/master/wikipedia.ipynb?flush_cache=true) to NBViewer.
-
-Here is a [link](https://docs.google.com/presentation/d/1TvyzBLKNtd8JSAftHxNQBTEFV3sqJS-Wb9kcnSRySK8/edit#slide=id.p) to the presentation slides.
 
 ### Content of the folder:
 * wikipedia.ipynd : this is the main notebook containing all the data pipeline and the exploitation of the data
@@ -37,9 +33,6 @@ The required libraries are:
  
 
 ### Project details
-[Link](https://docs.google.com/document/d/1XEc3ogZWYKrAFKGfEoxY8xdoTWGB_P_4vfVQA0mi6tk/edit?usp=sharing) to the original 
-project proposal.
-
 Here is a reminder of the project proposal adapted to the reality of the project:
 
 ***Graph:*** Wikipedia hyperlink network
